@@ -69,7 +69,7 @@ export default function Nav() {
       >
         <Link
           href="/"
-          className="font-serif text-xl tracking-tight text-ink"
+          className="font-serif text-lg font-extrabold tracking-tight text-ink"
           onClick={() => setOpen(false)}
         >
           {site.name}
@@ -85,7 +85,7 @@ export default function Nav() {
                   <Link
                     href={`/${link.href}`}
                     data-active={active === id}
-                    className="nav-link link-underline text-sm text-muted transition-colors hover:text-ink"
+                    className="nav-link link-underline text-sm font-medium text-muted transition-colors hover:text-ink"
                   >
                     {link.label}
                   </Link>

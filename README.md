@@ -98,9 +98,13 @@ The palette is CSS custom properties at the top of
 `[data-theme="dark"]` block for dark. Change `--accent` to re-tint the whole
 site.
 
-Fonts are set in [`src/app/layout.tsx`](src/app/layout.tsx): Instrument Serif for
-display, Inter for body. Swap either for any
+Fonts are set in [`src/app/layout.tsx`](src/app/layout.tsx): Plus Jakarta Sans
+for display, Inter for body. Swap either for any
 [Google Font](https://fonts.google.com) by changing the import.
+
+Note: the display face is exposed through the `--font-serif` token and the
+`font-serif` utility, kept under that name from an earlier serif-based design.
+It is a sans-serif now — the token name is historical, not a description.
 
 ### Dark mode
 

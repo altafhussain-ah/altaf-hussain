@@ -2,21 +2,22 @@ import Reveal from "./Reveal";
 
 type Props = {
   id: string;
-  /** The small uppercase label. */
+  /** The small accent label above the heading. */
   eyebrow: string;
-  /** The section heading. */
   title: string;
   /** Optional sentence under the heading. */
   intro?: string;
   children: React.ReactNode;
-  /** Draws a hairline above the section. Off for the first section after the hero. */
+  /** Draws a hairline above the section. */
   divider?: boolean;
+  /** Alternate surface, so adjacent sections separate without a hard rule. */
+  tinted?: boolean;
   className?: string;
 };
 
 /**
- * One consistent section header for the whole page: numbered eyebrow, serif
- * title, optional intro — then whatever the section itself renders.
+ * One centred section header for the whole page: accent eyebrow, heavy
+ * heading, short rule, optional intro.
  */
 export default function Section({
   id,
@@ -25,20 +26,26 @@ export default function Section({
   intro,
   children,
   divider = true,
+  tinted = false,
   className = "",
 }: Props) {
   return (
     <section
       id={id}
-      className={`scroll-mt-24 py-20 md:py-28 ${divider ? "border-t border-line" : ""} ${className}`}
+      className={`scroll-mt-24 py-20 md:py-28 ${
+        divider ? "border-t border-line" : ""
+      } ${tinted ? "bg-paper-raised" : ""} ${className}`}
     >
       <div className="container-editorial">
         <Reveal>
-          <header className="mb-12 md:mb-16">
+          <header className="mb-12 text-center md:mb-16">
             <p className="eyebrow">{eyebrow}</p>
-            <h2 className="mt-4 font-serif text-title text-ink">{title}</h2>
+            <h2 className="mt-3 font-serif text-title text-ink">{title}</h2>
+            <span className="heading-rule mt-5" aria-hidden="true" />
             {intro ? (
-              <p className="mt-5 max-w-2xl text-lead text-ink-soft">{intro}</p>
+              <p className="mx-auto mt-6 max-w-2xl text-lead text-ink-soft">
+                {intro}
+              </p>
             ) : null}
           </header>
         </Reveal>

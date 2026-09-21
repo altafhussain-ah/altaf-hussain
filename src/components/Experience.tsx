@@ -47,8 +47,8 @@ export default function Experience() {
   return (
     <Section
       id="experience"
-      eyebrow="Experience"
-      title="Where I've worked."
+      eyebrow="Where I've worked"
+      title="Experience."
       intro="Eleven years, from the test lab to the lecture hall."
     >
       <div className="relative pl-7 md:pl-10">
@@ -66,8 +66,10 @@ export default function Experience() {
 
               <div className="grid gap-x-10 gap-y-4 pb-12 md:grid-cols-12">
                 <div className="md:col-span-4">
-                  <p className="nums-tabular eyebrow">{role.period}</p>
-                  <h3 className="mt-3 font-serif text-2xl text-ink">
+                  <span className="nums-tabular inline-block rounded-full bg-accent-soft px-2.5 py-1 text-xs font-semibold text-accent">
+                    {role.period}
+                  </span>
+                  <h3 className="mt-3 font-serif text-xl font-bold text-ink">
                     {role.company}
                   </h3>
                   <p className="mt-1 text-sm font-medium text-ink-soft">

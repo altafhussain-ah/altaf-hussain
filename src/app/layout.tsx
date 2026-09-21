@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -9,10 +9,9 @@ const body = Inter({
   display: "swap",
 });
 
-const display = Instrument_Serif({
+const display = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: ["600", "700", "800"],
   variable: "--font-display",
   display: "swap",
 });

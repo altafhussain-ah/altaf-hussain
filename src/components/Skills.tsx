@@ -1,35 +1,101 @@
-import { skills } from "@/content/site";
+"use client";
+
+import { useState } from "react";
+import {
+  languages,
+  skillCategories,
+  skills,
+  type Level,
+  type SkillCategory,
+} from "@/content/site";
 import Reveal from "./Reveal";
 import Section from "./Section";
 
+const LEVEL_COLOR: Record<Level, string> = {
+  Expert: "var(--level-expert)",
+  Advanced: "var(--level-advanced)",
+  Working: "var(--level-working)",
+};
+
+type Filter = SkillCategory | "All";
+
 export default function Skills() {
+  const [filter, setFilter] = useState<Filter>("All");
+  const filters: Filter[] = ["All", ...skillCategories];
+
+  const shown =
+    filter === "All" ? skills : skills.filter((s) => s.category === filter);
+
   return (
     <Section
       id="skills"
-      eyebrow="Toolkit"
-      title="What I work with."
-      intro="Tools are just tools — but these are the ones I reach for without thinking."
+      eyebrow="What I work with"
+      title="Skills & expertise."
+      intro="Eleven years of it, split between shipping software and teaching people how."
+      tinted
     >
-      <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-        {skills.map((group, i) => (
-          <Reveal key={group.group} delay={i * 80}>
-            <div className="border-t border-line pt-5">
-              <h3 className="eyebrow">{group.group}</h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {group.items.map((item, j) => (
-                  <li
-                    key={item}
-                    className="chip rounded-full bg-paper-raised px-3 py-1.5 text-sm text-ink-soft ring-1 ring-line hover:text-ink hover:ring-line-strong"
-                    style={{ ["--chip-delay" as string]: `${j * 50}ms` }}
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
+      <Reveal>
+        <div
+          role="group"
+          aria-label="Filter skills by category"
+          className="mb-10 flex flex-wrap justify-center gap-2"
+        >
+          {filters.map((f) => (
+            <button
+              key={f}
+              type="button"
+              onClick={() => setFilter(f)}
+              aria-pressed={filter === f}
+              className="pill"
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+      </Reveal>
+
+      <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {shown.map((skill, i) => (
+          <Reveal
+            /* Key on the filter too, so cards re-run their reveal when the
+               list changes rather than snapping in already-visible. */
+            key={`${filter}-${skill.name}`}
+            delay={Math.min(i, 8) * 55}
+            as="li"
+          >
+            <div className="card h-full rounded-xl p-5">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="font-serif text-base font-bold text-ink">
+                  {skill.name}
+                </h3>
+                <span
+                  className="level shrink-0"
+                  style={{
+                    ["--level-color" as string]: LEVEL_COLOR[skill.level],
+                  }}
+                >
+                  {skill.level}
+                </span>
+              </div>
+              <p className="mt-2.5 text-sm leading-relaxed text-muted">
+                {skill.detail}
+              </p>
             </div>
           </Reveal>
         ))}
-      </div>
+      </ul>
+
+      <Reveal delay={120}>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 border-t border-line pt-8">
+          <span className="eyebrow-muted">Languages</span>
+          {languages.map((l) => (
+            <span key={l.name} className="text-sm text-ink-soft">
+              {l.name}{" "}
+              <span className="text-muted">&middot; {l.level}</span>
+            </span>
+          ))}
+        </div>
+      </Reveal>
     </Section>
   );
 }

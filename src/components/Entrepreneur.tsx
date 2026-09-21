@@ -9,18 +9,19 @@ export default function Entrepreneur() {
       eyebrow="Entrepreneur"
       title="My studio."
       intro="Running Aquwa Soft is the other half of the job — the side where the deadlines are real and the users are paying."
+      tinted
     >
       {/* Masthead panel: the studio's name gets the weight here, not mine. */}
       <Reveal>
         <div
-          className="card scanline relative overflow-hidden rounded-sm p-8 md:p-12"
+          className="card scanline relative overflow-hidden rounded-2xl p-8 md:p-12"
           style={{ ["--scan-height" as string]: "100%" }}
         >
           <div aria-hidden="true" className="iso-grid absolute inset-0" />
           <div className="relative grid gap-10 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-7">
               <p className="eyebrow">{company.tagline}</p>
-              <h3 className="mt-4 font-serif text-title text-ink">
+              <h3 className="mt-3 font-serif text-title text-ink">
                 {company.name}
               </h3>
               <p className="mt-6 max-w-xl text-lead text-ink-soft">
@@ -70,15 +71,17 @@ export default function Entrepreneur() {
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         {company.services.map((service, i) => (
           <Reveal key={service.title} delay={i * 90}>
-            <div className="card h-full rounded-sm p-7">
-              <div className="flex items-baseline gap-4">
+            <div className="card h-full rounded-xl p-6">
+              <div className="flex items-center gap-3.5">
                 <span
                   aria-hidden="true"
-                  className="nums-tabular font-serif text-2xl leading-none text-line-strong"
+                  className="nums-tabular grid size-9 shrink-0 place-items-center rounded-lg bg-accent-soft text-sm font-bold text-accent"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h4 className="font-serif text-xl text-ink">{service.title}</h4>
+                <h4 className="font-serif text-lg font-bold text-ink">
+                  {service.title}
+                </h4>
               </div>
               <p className="mt-4 text-sm leading-relaxed text-ink-soft">
                 {service.detail}

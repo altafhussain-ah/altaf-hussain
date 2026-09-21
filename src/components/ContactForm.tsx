@@ -49,12 +49,12 @@ export default function ContactForm() {
       </div>
 
       <label className="block">
-        <span className="eyebrow">Message</span>
+        <span className="eyebrow-muted">Message</span>
         <textarea
           name="message"
           required
           rows={5}
-          className="mt-2.5 w-full resize-y rounded-sm border border-line bg-paper-raised px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-line-strong focus:outline-none"
+          className="mt-2.5 w-full resize-y rounded-lg border border-line bg-paper-raised px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-accent focus:outline-none"
           placeholder="What are you working on?"
         />
       </label>
@@ -63,7 +63,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper transition-transform hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
+          className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-accent/25 transition-transform hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
         >
           {status === "sending" ? "Sending…" : "Send message"}
         </button>
@@ -104,13 +104,13 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="eyebrow">{label}</span>
+      <span className="eyebrow-muted">{label}</span>
       <input
         type={type}
         name={name}
         required
         autoComplete={autoComplete}
-        className="mt-2.5 w-full rounded-sm border border-line bg-paper-raised px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-line-strong focus:outline-none"
+        className="mt-2.5 w-full rounded-lg border border-line bg-paper-raised px-4 py-3 text-sm text-ink placeholder:text-muted focus:border-accent focus:outline-none"
       />
     </label>
   );

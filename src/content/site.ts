@@ -42,11 +42,24 @@ export const socials = [
 ] satisfies { label: string; href: string }[];
 
 export const hero = {
-  headline: "I teach game development, and research how software gets built.",
+  /** Small line above the name. */
+  eyebrow: "Hi, I'm",
+  /** Cycled one after another by the typewriter line under the role. */
+  rotatingLines: [
+    "I teach game development.",
+    "I run a game studio.",
+    "I research how software gets built.",
+    "I've shipped quality for eleven years.",
+  ],
   subhead:
-    "Lecturer in the Department of Computer Games Development at Air University, PhD researcher at Multimedia University, and founder of Aquwa Soft. Eleven years across software quality, studio leadership and the classroom.",
-  /** Small text above the headline. Set to null to hide it. */
-  eyebrow: "PhD researcher at Multimedia University, Malaysia",
+    "Lecturer in the Department of Computer Games Development at Air University, PhD researcher at Multimedia University, and founder of Aquwa Soft.",
+  /** Four scannable claims, each with a tick. */
+  highlights: [
+    "Game design, programming and digital asset creation",
+    "Software quality engineering across the full SDLC",
+    "Agile delivery and Scrum team leadership",
+    "Research in requirements engineering and AI in games",
+  ],
 };
 
 export const about = {
@@ -67,19 +80,29 @@ export const about = {
   ],
 };
 
+export type ProjectCategory = "Research" | "Community" | "Software";
+
+/** Order the project filter pills appear in. */
+export const projectCategories: ProjectCategory[] = [
+  "Research",
+  "Community",
+  "Software",
+];
+
 export type Project = {
   title: string;
   /** One line. What it is, not how it was made. */
   blurb: string;
-  /** A short paragraph shown on the featured card. */
+  /** A short paragraph shown on the card. */
   description: string;
   year: string;
+  category: ProjectCategory;
+  /** Where it was done — shown as a small badge on the card. */
+  org: string;
   tags: string[];
   /** Optional links — omit or set to null and the button won't render. */
   live?: string | null;
   source?: string | null;
-  /** Mark your best two or three. Featured items get a larger card. */
-  featured?: boolean;
 };
 
 export const projects: Project[] = [
@@ -90,10 +113,11 @@ export const projects: Project[] = [
     description:
       "Maps the challenges and selection criteria for tool-supported requirements elicitation, and identifies gaps the field has yet to close — the distance between theory and practice, how elicitation knowledge is captured and reused, and where emerging web and agent-based architectures fit into the next generation of support tools. Began as my MS thesis; currently under review for publication.",
     year: "2025",
-    tags: ["Requirements Engineering", "Systematic Review", "Research"],
+    category: "Research",
+    org: "Riphah International University",
+    tags: ["Requirements Engineering", "Systematic Review", "Under Review"],
     live: null,
     source: null,
-    featured: true,
   },
   {
     title: "Fake News Detection",
@@ -102,10 +126,11 @@ export const projects: Project[] = [
     description:
       "Applies natural language processing and machine learning to the detection of misinformation, using meta model extraction to improve classification. Co-authored with Shahzad Khan and currently under review for publication.",
     year: "2025",
-    tags: ["NLP", "Machine Learning", "Research"],
+    category: "Research",
+    org: "Riphah International University",
+    tags: ["NLP", "Machine Learning", "Under Review"],
     live: null,
     source: null,
-    featured: true,
   },
   {
     title: "Pakistan Game Developers Conference",
@@ -114,10 +139,11 @@ export const projects: Project[] = [
     description:
       "The second PGDC brought together designers, developers, artists and storytellers from across Pakistan for a gaming ideathon, prototype competition, game jam, industry workshops and a careers fair — organised through the Department of Computer Games Development.",
     year: "2025",
-    tags: ["Game Development", "Community", "Events"],
+    category: "Community",
+    org: "Air University",
+    tags: ["Game Development", "Conference", "Ideathon"],
     live: null,
     source: null,
-    featured: true,
   },
   {
     title: "Academic Guider",
@@ -126,6 +152,8 @@ export const projects: Project[] = [
     description:
       "Final-year project for my BE at UET Taxila. A filtered search tool that helps students find the school or college that best fits their requirements, rather than making them trawl through institution listings by hand.",
     year: "2016",
+    category: "Software",
+    org: "UET Taxila",
     tags: ["Web Development", "Search", "Final Year Project"],
     live: null,
     source: null,
@@ -137,73 +165,150 @@ export const projects: Project[] = [
     description:
       "Led organisation of a conference on the Internet of Things at the Jinnah Convention Centre, Islamabad — coordinating speakers, programme and logistics.",
     year: "2017",
+    category: "Community",
+    org: "Jinnah Convention Centre",
     tags: ["Events", "IoT", "Leadership"],
     live: null,
     source: null,
   },
 ];
 
-export type SkillGroup = { group: string; items: string[] };
+export type SkillCategory =
+  | "Quality"
+  | "Game Dev"
+  | "Process"
+  | "Data"
+  | "Tools";
 
-export const skills: SkillGroup[] = [
+export type Level = "Expert" | "Advanced" | "Working";
+
+export type Skill = {
+  name: string;
+  category: SkillCategory;
+  level: Level;
+  detail: string;
+};
+
+/** Order the filter pills appear in. "All" is prepended by the component. */
+export const skillCategories: SkillCategory[] = [
+  "Quality",
+  "Game Dev",
+  "Process",
+  "Data",
+  "Tools",
+];
+
+export const skills: Skill[] = [
   {
-    group: "Quality Engineering",
-    items: [
-      "Functional & non-functional testing",
-      "Test case design",
-      "Regression testing",
-      "Performance testing (JMeter)",
-      "TFS & Microsoft Test Manager",
-      "Traceability matrices",
-      "Root cause analysis",
-    ],
+    name: "Software Quality Engineering",
+    category: "Quality",
+    level: "Expert",
+    detail:
+      "Test strategy, planning and case design across the full SDLC — system, regression and acceptance testing.",
   },
   {
-    group: "Game Development",
-    items: [
-      "Unity",
-      "Game design documents",
-      "Prototyping & playtesting",
-      "Level design",
-      "AI in games",
-      "3D modelling & animation",
-    ],
+    name: "Test Automation & Tooling",
+    category: "Quality",
+    level: "Advanced",
+    detail: "TFS and Microsoft Test Manager, traceability matrices, defect root cause analysis.",
   },
   {
-    group: "Project & Process",
-    items: [
-      "Agile",
-      "Scrum",
-      "Project planning",
-      "Jira & Trello",
-      "Team management",
-      "Stakeholder communication",
-    ],
+    name: "Performance Testing",
+    category: "Quality",
+    level: "Advanced",
+    detail: "Load, stress and database testing with JMeter against real workloads.",
   },
   {
-    group: "Data & Development",
-    items: [
-      "SQL",
-      "Python",
-      "Web development",
-      "Data visualisation",
-      "Data analysis",
-    ],
+    name: "Unity",
+    category: "Game Dev",
+    level: "Advanced",
+    detail: "Gameplay systems and prototypes, and the engine I teach with day to day.",
   },
   {
-    group: "Tools & Platforms",
-    items: [
-      "Figma",
-      "Adobe Photoshop",
-      "Google Play Console",
-      "Sensor Tower",
-      "Microsoft Office",
-    ],
+    name: "Game Design",
+    category: "Game Dev",
+    level: "Expert",
+    detail: "Concept and mechanics, design documents, level layouts, prototyping and playtesting.",
   },
   {
-    group: "Languages",
-    items: ["Punjabi (native)", "Urdu (C1–C2)", "English (B2)"],
+    name: "AI in Games",
+    category: "Game Dev",
+    level: "Advanced",
+    detail: "Agent behaviour and decision systems — a standing research and teaching interest.",
   },
+  {
+    name: "3D Modelling & Animation",
+    category: "Game Dev",
+    level: "Working",
+    detail: "Asset pipelines and animation fundamentals, taught at undergraduate level.",
+  },
+  {
+    name: "Agile & Scrum",
+    category: "Process",
+    level: "Expert",
+    detail: "Scrum Fundamentals certified. Sprint planning, ceremonies and delivery in agile teams.",
+  },
+  {
+    name: "Project Management",
+    category: "Process",
+    level: "Advanced",
+    detail: "Planning, milestones, resourcing and quality gates across end-to-end delivery.",
+  },
+  {
+    name: "Team Leadership",
+    category: "Process",
+    level: "Advanced",
+    detail: "Running a studio since 2015, plus supervising student project teams.",
+  },
+  {
+    name: "SQL",
+    category: "Data",
+    level: "Advanced",
+    detail: "Query authoring and database validation during application testing.",
+  },
+  {
+    name: "Python",
+    category: "Data",
+    level: "Working",
+    detail: "Data analysis and visualisation; certified in data visualisation with Python.",
+  },
+  {
+    name: "Requirements Engineering",
+    category: "Data",
+    level: "Expert",
+    detail: "The subject of my MS thesis and a paper currently under review.",
+  },
+  {
+    name: "Jira & Trello",
+    category: "Tools",
+    level: "Advanced",
+    detail: "Backlog, sprint and defect tracking across teams.",
+  },
+  {
+    name: "Figma",
+    category: "Tools",
+    level: "Working",
+    detail: "Interface layout and design handoff.",
+  },
+  {
+    name: "Google Play Console",
+    category: "Tools",
+    level: "Advanced",
+    detail: "Release management, store listings and post-launch performance monitoring.",
+  },
+  {
+    name: "App Store Optimisation",
+    category: "Tools",
+    level: "Advanced",
+    detail: "Keyword research and metadata tuning with Sensor Tower.",
+  },
+];
+
+/** Shown as a small strip under the skills grid. */
+export const languages = [
+  { name: "Punjabi", level: "Native" },
+  { name: "Urdu", level: "C1–C2" },
+  { name: "English", level: "B2" },
 ];
 
 export type Role = {

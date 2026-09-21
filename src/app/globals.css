@@ -7,16 +7,21 @@
    Warm paper + warm near-black. Editorial layouts live or die on the
    background not being pure #fff — it makes the type feel printed.      */
 :root {
-  --paper: #fbfaf7;
+  --paper: #f7f9fc;
   --paper-raised: #ffffff;
-  --ink: #16150f;
-  --ink-soft: #46443c;
-  --muted: #76736a;
-  --line: #e6e2d8;
-  --line-strong: #d3cec1;
-  --accent: #b0441f;
-  --accent-soft: #f4e6e0;
-  --shadow: 20 18 12;
+  --ink: #0f172a;
+  --ink-soft: #334155;
+  --muted: #64748b;
+  --line: #e2e8f0;
+  --line-strong: #cbd5e1;
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --shadow: 15 23 42;
+
+  /* Proficiency dots on the skills cards. */
+  --level-expert: #16a34a;
+  --level-advanced: #2563eb;
+  --level-working: #d97706;
 }
 
 /* Dark is near-neutral on purpose. Carrying the light theme's warmth into the
@@ -24,16 +29,20 @@
    accent and the text, where it reads as intent rather than as a muddy cast.
    Surfaces are spaced far enough apart that cards separate from the page. */
 [data-theme="dark"] {
-  --paper: #0e0e10;
-  --paper-raised: #17171a;
-  --ink: #f2f1ee;
-  --ink-soft: #b4b3af;
-  --muted: #858480;
-  --line: #262629;
-  --line-strong: #3b3b40;
-  --accent: #ea8257;
-  --accent-soft: #221a16;
+  --paper: #0b1120;
+  --paper-raised: #131c2e;
+  --ink: #f1f5f9;
+  --ink-soft: #cbd5e1;
+  --muted: #94a3b8;
+  --line: #1e293b;
+  --line-strong: #334155;
+  --accent: #60a5fa;
+  --accent-soft: #172554;
   --shadow: 0 0 0;
+
+  --level-expert: #4ade80;
+  --level-advanced: #60a5fa;
+  --level-working: #fbbf24;
 }
 
 @theme inline {
@@ -48,19 +57,24 @@
   --color-accent-soft: var(--accent-soft);
 
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-display), ui-serif, Georgia, serif;
+  /* `font-serif` is the display face — kept under that name so every existing
+     `font-serif` utility picks up the new typeface without a sweep. */
+  --font-serif: var(--font-display), ui-sans-serif, system-ui, sans-serif;
 
-  /* Editorial type scale — fluid, so headings stay proportional on phones. */
-  --text-display: clamp(2.75rem, 7vw, 5.5rem);
-  --text-display--line-height: 0.98;
-  --text-display--letter-spacing: -0.03em;
+  /* Tight, heavy display scale. Negative tracking at these sizes is what
+     stops big sans headings reading as generic. */
+  --text-display: clamp(2.5rem, 6vw, 4.75rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.035em;
+  --text-display--font-weight: 800;
 
-  --text-title: clamp(2rem, 4.5vw, 3.25rem);
-  --text-title--line-height: 1.06;
-  --text-title--letter-spacing: -0.02em;
+  --text-title: clamp(1.9rem, 3.6vw, 2.75rem);
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.025em;
+  --text-title--font-weight: 800;
 
-  --text-lead: clamp(1.125rem, 1.9vw, 1.4rem);
-  --text-lead--line-height: 1.55;
+  --text-lead: clamp(1.0625rem, 1.5vw, 1.2rem);
+  --text-lead--line-height: 1.65;
 }
 
 @layer base {
@@ -144,13 +158,118 @@
     display: none;
   }
 
-  /* The small caps label that opens each section. */
+  /* The small caps label that opens each section. Accent-coloured now —
+     it's what gives a centred header its anchor. */
   .eyebrow {
     font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Muted variant for metadata (dates, labels) rather than section openers. */
+  .eyebrow-muted {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--muted);
+  }
+
+  /* Short rule under a centred section heading. */
+  .heading-rule {
+    display: block;
+    width: 3.5rem;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--accent);
+    margin-inline: auto;
+  }
+
+  /* Filter pills for the skills and project groups. */
+  .pill {
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--paper-raised);
+    padding: 0.45rem 1.05rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted);
+    transition:
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      color 0.25s ease,
+      transform 0.25s ease;
+  }
+  .pill:hover {
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+  .pill[aria-pressed="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  /* Proficiency badge — coloured dot plus label. */
+  .level {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .level::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--level-color, var(--muted));
+  }
+
+  /* Hero portrait: soft accent halo behind a circular crop. */
+  .portrait-ring {
+    position: relative;
+    border-radius: 999px;
+    padding: 6px;
+    background: linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--accent) 45%, transparent),
+      transparent 55%,
+      color-mix(in oklab, var(--accent) 20%, transparent)
+    );
+  }
+  .portrait-ring::before {
+    content: "";
+    position: absolute;
+    inset: -14%;
+    border-radius: 999px;
+    background: radial-gradient(
+      closest-side,
+      color-mix(in oklab, var(--accent) 22%, transparent),
+      transparent 72%
+    );
+    filter: blur(26px);
+    z-index: -1;
+  }
+
+  /* The bouncing cue at the bottom of the hero. */
+  @keyframes nudge {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.55;
+    }
+    50% {
+      transform: translateY(7px);
+      opacity: 1;
+    }
+  }
+  .scroll-cue {
+    animation: nudge 2.1s ease-in-out infinite;
   }
 
   /* Underline that grows from the left on hover — used on text links. */
