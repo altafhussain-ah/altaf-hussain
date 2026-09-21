@@ -55,9 +55,8 @@ export const about = {
   imageAlt: "Altaf Hussain",
   paragraphs: [
     "I lecture in the Department of Computer Games Development at Air University, Islamabad, where I teach game design, programming and digital asset creation, and supervise final-year projects from first concept through to deployment. In 2026 I began a PhD at Multimedia University in Malaysia.",
-    "I've also run my own studio since 2015. Aquwa Soft builds software and games out of Islamabad, and founding it taught me the parts of this work that no coursework covers — pricing, hiring, and the difference between a product that ships and one that merely compiles. Alongside it I spent nearly two years as a Senior Software Quality Engineer at IKONIC, owning testing strategy across the SDLC.",
+    "I've also run my own studio since 2015. Aquwa Soft builds software and games out of Islamabad, and founding it taught me the parts of this work that no coursework covers — pricing, hiring, and the difference between a product that ships and one that merely compiles.",
     "My research sits where software engineering meets practice. My master's thesis was a systematic literature review of software-based requirement elicitation tools, and I currently have papers under review on that subject and on fake news detection using NLP and machine learning. I hold an MS in Software Engineering with distinction from Riphah International University.",
-    "Outside the lecture hall, I spent five years volunteering as a computer science teacher in under-resourced communities around Islamabad — work that shaped how I think about teaching more than any training course has.",
   ],
   /** Short, scannable facts shown beside the prose. */
   facts: [
@@ -276,15 +275,6 @@ export const experience: Role[] = [
     ],
     stack: ["JMeter", "SQL", "TFS", "Microsoft Test Manager", "Scrum"],
   },
-  {
-    company: "WEBEXERT",
-    title: "Software Quality Assurance Engineer",
-    period: "Oct 2021 — Nov 2021",
-    location: "Islamabad, Pakistan",
-    points: [
-      "Short engagement covering functional and regression testing across web applications.",
-    ],
-  },
 ];
 
 /** The band of numbers under the hero. Keep these to four. */
@@ -347,9 +337,9 @@ export const certifications: Credential[] = [
 
 export const achievements: Credential[] = [
   {
-    name: "Best Teacher Award",
-    issuer: "Air University — Spring 2025, Fall 2025, Spring 2026",
-    year: "3×",
+    name: "Best Teacher Award — Spring 2026",
+    issuer: "Air University",
+    year: "2026",
   },
   {
     name: "Internship Coordinator Award",
@@ -357,8 +347,18 @@ export const achievements: Credential[] = [
     year: "2026",
   },
   {
-    name: "Highest Feedback Award",
-    issuer: "Air University — Spring 2025",
+    name: "Best Teacher Award — Fall 2025",
+    issuer: "Air University",
+    year: "2025",
+  },
+  {
+    name: "Best Teacher Award — Spring 2025",
+    issuer: "Air University",
+    year: "2025",
+  },
+  {
+    name: "Highest Feedback Award — Spring 2025",
+    issuer: "Air University",
     year: "2025",
   },
   {
@@ -393,12 +393,47 @@ export const achievements: Credential[] = [
   },
 ];
 
-export const volunteering = {
-  role: "Computer Science Teacher",
-  period: "2018 — 2023",
-  location: "Islamabad, Pakistan",
-  detail:
-    "Volunteered teaching computer science to children in under-resourced communities, working to close the gap in access to quality education and build science literacy where resources are thin.",
+/**
+ * The Entrepreneur section — the studio profile.
+ * Everything here is drawn from documented work. Add shipped titles, clients,
+ * team size or a company URL as they become available.
+ */
+export const company = {
+  name: "Aquwa Soft",
+  tagline: "Game studio & software house",
+  role: "Founder & Chief Executive Officer",
+  /** Set a URL here and the section shows a link out to it. */
+  url: null as string | null,
+  intro:
+    "A game studio and software house I founded in Islamabad in 2015. We build games and custom software — and because quality engineering is where I started, it is the discipline the studio is built around rather than the step bolted on at the end.",
+  services: [
+    {
+      title: "Game development",
+      detail:
+        "Concept and mechanics through to release — design documents, level layouts, prototyping and playtesting, built primarily in Unity.",
+    },
+    {
+      title: "Software development",
+      detail:
+        "Custom software delivered end to end, from requirements elicitation through build, release and iteration.",
+    },
+    {
+      title: "Quality assurance",
+      detail:
+        "The studio's founding discipline. Full test lifecycle coverage — functional, integration, regression, usability and acceptance — with test plans and summary reports that stand up to review.",
+    },
+    {
+      title: "Launch & growth",
+      detail:
+        "App store optimisation and Google Play Console management: keyword research, metadata, and tracking performance and user feedback after release.",
+    },
+  ],
+  facts: [
+    { label: "Founded", value: "2015" },
+    { label: "Based in", value: "Islamabad, PK" },
+    { label: "Focus", value: "Games & software" },
+    { label: "My role", value: "Founder & CEO" },
+  ],
 };
 
 export const contact = {
@@ -416,6 +451,7 @@ export const contact = {
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Work", href: "#work" },
+  { label: "Entrepreneur", href: "#entrepreneur" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Education", href: "#education" },

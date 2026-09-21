@@ -1,4 +1,4 @@
-import { achievements, certifications, volunteering } from "@/content/site";
+import { achievements, certifications } from "@/content/site";
 import Reveal from "./Reveal";
 import Section from "./Section";
 
@@ -18,25 +18,6 @@ export default function Credentials() {
           <List heading="Certifications" items={certifications} />
         </Reveal>
       </div>
-
-      <Reveal delay={180}>
-        <div className="mt-16 border-t border-line pt-6">
-          <h3 className="eyebrow">Volunteering</h3>
-          <div className="mt-4 grid gap-x-10 gap-y-3 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <p className="font-serif text-2xl text-ink">
-                {volunteering.role}
-              </p>
-              <p className="nums-tabular mt-1 text-sm text-muted">
-                {volunteering.period} · {volunteering.location}
-              </p>
-            </div>
-            <p className="text-sm leading-relaxed text-ink-soft md:col-span-8">
-              {volunteering.detail}
-            </p>
-          </div>
-        </div>
-      </Reveal>
     </Section>
   );
 }
