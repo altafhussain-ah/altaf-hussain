@@ -15,7 +15,7 @@ export const site = {
   /** Shown under your name in the hero. Keep it to one line. */
   role: "Software Engineer & Designer",
   /** Absolute URL of the deployed site — used for SEO/social cards. */
-  url: "https://example.com",
+  url: "https://altaf-hussain.vercel.app",
   /** One sentence for search engines and link previews. */
   description:
     "Portfolio of Altaf — engineer and designer building thoughtful software for the web.",
