@@ -12,8 +12,12 @@ export default function Entrepreneur() {
     >
       {/* Masthead panel: the studio's name gets the weight here, not mine. */}
       <Reveal>
-        <div className="card rounded-sm p-8 md:p-12">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+        <div
+          className="card scanline relative overflow-hidden rounded-sm p-8 md:p-12"
+          style={{ ["--scan-height" as string]: "100%" }}
+        >
+          <div aria-hidden="true" className="iso-grid absolute inset-0" />
+          <div className="relative grid gap-10 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-7">
               <p className="eyebrow">{company.tagline}</p>
               <h3 className="mt-4 font-serif text-title text-ink">

@@ -4,10 +4,15 @@ import AnimatedHeadline from "./AnimatedHeadline";
 import Reveal from "./Reveal";
 import Spotlight from "./Spotlight";
 import Stats from "./Stats";
+import WireframeField from "./WireframeField";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden pt-36 pb-16 md:pt-44 md:pb-24">
+      {/* Background layers, furthest back first. The gradient mask on the
+          grid keeps it from running into the stats band below. */}
+      <div aria-hidden="true" className="tile-grid absolute inset-0" />
+      <WireframeField />
       <div className="hero-glow pointer-events-none absolute -top-40 left-1/2 h-[42rem] w-[72rem] -translate-x-1/2 rounded-full blur-3xl" />
       <Spotlight />
 

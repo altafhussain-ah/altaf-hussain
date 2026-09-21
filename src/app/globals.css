@@ -439,6 +439,79 @@
     transform: scaleX(1);
   }
 
+  /* ── Game-engine motifs ──────────────────────────────────────────────
+     Two backdrops borrowed from the tooling: the tile grid a level editor
+     snaps to, and the scanning sweep of a build or bake. Both sit at very
+     low contrast — they're texture, not decoration.                     */
+
+  /* Editor tile grid, faded out at the edges so it has no hard boundary. */
+  .tile-grid {
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    opacity: 0.55;
+    -webkit-mask-image: radial-gradient(
+      ellipse 85% 70% at 50% 35%,
+      #000 30%,
+      transparent 78%
+    );
+    mask-image: radial-gradient(
+      ellipse 85% 70% at 50% 35%,
+      #000 30%,
+      transparent 78%
+    );
+  }
+
+  /* Isometric tiling for the studio panel — a level laid out in plan. */
+  .iso-grid {
+    pointer-events: none;
+    background-image:
+      linear-gradient(60deg, var(--line) 1px, transparent 1px),
+      linear-gradient(-60deg, var(--line) 1px, transparent 1px);
+    background-size: 34px 59px;
+    opacity: 0.85;
+    -webkit-mask-image: linear-gradient(to bottom right, #000, transparent 72%);
+    mask-image: linear-gradient(to bottom right, #000, transparent 72%);
+  }
+
+  /* A single accent line that sweeps down the studio panel, like a bake
+     pass running over a scene. Slow enough to notice only if you look. */
+  .scanline::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in oklab, var(--accent) 55%, transparent),
+      transparent
+    );
+    animation: scan 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes scan {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    8% {
+      opacity: 1;
+    }
+    88% {
+      opacity: 1;
+    }
+    92%,
+    100% {
+      transform: translateY(var(--scan-height, 320px));
+      opacity: 0;
+    }
+  }
+
   /* Chips that pop in one after another. */
   .chip {
     opacity: 0;
