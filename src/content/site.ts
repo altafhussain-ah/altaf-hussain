@@ -17,11 +17,11 @@
 export const site = {
   name: "Altaf Hussain",
   /** Shown under your name in the hero. Keep it to one line. */
-  role: "Lecturer & Game Development Researcher",
+  role: "Lecturer, Researcher & Studio Founder",
   /** Absolute URL of the deployed site — used for SEO/social cards. */
   url: "https://altaf-hussain.vercel.app",
   description:
-    "Altaf Hussain — lecturer in game development at Air University and PhD researcher at Multimedia University, Malaysia. Eleven years in software quality engineering and project delivery.",
+    "Altaf Hussain — lecturer in game development at Air University, PhD researcher at Multimedia University, Malaysia, and founder of Aquwa Soft. Eleven years in software quality and studio leadership.",
   location: "Cyberjaya, Malaysia",
   email: "altafbintariq@gmail.com",
   /**
@@ -44,7 +44,7 @@ export const socials = [
 export const hero = {
   headline: "I teach game development, and research how software gets built.",
   subhead:
-    "Lecturer in the Department of Computer Games Development at Air University, and a PhD researcher at Multimedia University, Malaysia. Eleven years across software quality engineering, project delivery and the classroom.",
+    "Lecturer in the Department of Computer Games Development at Air University, PhD researcher at Multimedia University, and founder of Aquwa Soft. Eleven years across software quality, studio leadership and the classroom.",
   /** Small text above the headline. Set to null to hide it. */
   eyebrow: "PhD researcher at Multimedia University, Malaysia",
 };
@@ -55,7 +55,7 @@ export const about = {
   imageAlt: "Portrait of Altaf Hussain",
   paragraphs: [
     "I lecture in the Department of Computer Games Development at Air University, Islamabad, where I teach game design, programming and digital asset creation, and supervise final-year projects from first concept through to deployment. In 2026 I began a PhD at Multimedia University in Malaysia.",
-    "Before teaching I spent a decade in industry quality engineering — six years at Aquwa Soft across the full software test lifecycle, then nearly two years as a Senior Software Quality Engineer at IKONIC, owning testing strategy across the SDLC. Along the way I picked up game design, app store optimisation and Google Play account management.",
+    "I've also run my own studio since 2015. Aquwa Soft builds software and games out of Islamabad, and founding it taught me the parts of this work that no coursework covers — pricing, hiring, and the difference between a product that ships and one that merely compiles. Alongside it I spent nearly two years as a Senior Software Quality Engineer at IKONIC, owning testing strategy across the SDLC.",
     "My research sits where software engineering meets practice. My master's thesis was a systematic literature review of software-based requirement elicitation tools, and I currently have papers under review on that subject and on fake news detection using NLP and machine learning. I hold an MS in Software Engineering with distinction from Riphah International University.",
     "Outside the lecture hall, I spent five years volunteering as a computer science teacher in under-resourced communities around Islamabad — work that shaped how I think about teaching more than any training course has.",
   ],
@@ -63,7 +63,7 @@ export const about = {
   facts: [
     { label: "Based in", value: "Cyberjaya, MY" },
     { label: "Focus", value: "Game dev & SQA" },
-    { label: "Experience", value: "11+ years" },
+    { label: "Studio", value: "Aquwa Soft" },
     { label: "Currently", value: "PhD researcher" },
   ],
 };
@@ -218,10 +218,13 @@ export type Role = {
 };
 
 /**
- * Titles, companies and dates follow the LinkedIn profile, which is the more
- * current record. Note: the EuroPass CV lists the Aquwa Soft role as
- * "Project Manager, Sep 2019 – Oct 2021"; LinkedIn lists it as
- * "Software Quality Engineer, Sep 2015 – Oct 2021". LinkedIn is used here.
+ * Current roles first, then past roles newest-first. Each entry carries its
+ * own period, so the two overlapping current roles read correctly.
+ *
+ * Aquwa Soft is recorded here as Founder & CEO from 2015 to present, per the
+ * site owner. Note this differs from both other sources: the EuroPass CV says
+ * "Project Manager, Sep 2019 – Oct 2021" and LinkedIn says "Software Quality
+ * Engineer, Sep 2015 – Oct 2021". LinkedIn should be updated to match.
  */
 export const experience: Role[] = [
   {
@@ -231,11 +234,23 @@ export const experience: Role[] = [
     location: "Islamabad, Pakistan",
     points: [
       "Teach game design principles, programming and digital asset creation, and supervise individual and group projects across the full development lifecycle from concept to deployment.",
-      "Awarded Best Teacher for Spring 2026 — the third consecutive time — by the Department of Computer Games Development.",
+      "Named Best Teacher three semesters running — Spring 2025, Fall 2025 and Spring 2026 — by the Department of Computer Games Development.",
       "Run workshops and seminars on AI in games, 3D modelling, animation and game physics, and bring in guest lectures and collaborations with working industry professionals.",
       "Contribute to curriculum development and academic strategy, keeping the programme aligned with where the games industry is actually going.",
     ],
     stack: ["Unity", "Game Design", "AI in Games", "Curriculum", "Supervision"],
+  },
+  {
+    company: "Aquwa Soft",
+    title: "Founder & Chief Executive Officer",
+    period: "2015 — Present",
+    location: "Islamabad, Pakistan",
+    points: [
+      "Founded and run Aquwa Soft, a software and game development studio, leading the business since 2015.",
+      "Set the quality bar hands-on through the studio's early years — the full software test lifecycle across client projects, defect triage and severity reporting, and the test plans and summary reports that went with it.",
+      "Oversee game design and delivery end to end: concept and mechanics, design documents and level layouts, playtesting, plus app store optimisation and Google Play Console management.",
+    ],
+    stack: ["Leadership", "Game Design", "ASO", "Google Play Console", "STLC"],
   },
   {
     company: "British Council",
@@ -270,26 +285,14 @@ export const experience: Role[] = [
       "Short engagement covering functional and regression testing across web applications.",
     ],
   },
-  {
-    company: "Aquwa Soft",
-    title: "Software Quality Engineer",
-    period: "Sep 2015 — Oct 2021",
-    location: "Islamabad, Pakistan",
-    points: [
-      "Six years across the full software test lifecycle — sanity, functional, unit, integration, usability, smoke, data validation, system, exploratory, regression and user acceptance testing.",
-      "Maintained monthly defect reporting, triaging issues by severity and impact on the application, and ran the complete quality control cycle from test through logging to verification.",
-      "Authored and maintained technical documentation — test plans, test cases and test summary reports — and conducted inspection and review of use case documents.",
-    ],
-    stack: ["Black Box Testing", "STLC", "Test Planning", "Defect Management"],
-  },
 ];
 
 /** The band of numbers under the hero. Keep these to four. */
 export const stats = [
   { value: 11, suffix: "+", label: "Years in software" },
   { value: 3, suffix: "×", label: "Best Teacher Award" },
+  { value: 9, suffix: "", label: "Awards & honours" },
   { value: 2, suffix: "", label: "Papers under review" },
-  { value: 10, suffix: "+", label: "Certifications" },
 ];
 
 export type Education = {
@@ -344,9 +347,34 @@ export const certifications: Credential[] = [
 
 export const achievements: Credential[] = [
   {
-    name: "Best Teacher Award, Spring 2026 — third consecutive",
+    name: "Best Teacher Award",
+    issuer: "Air University — Spring 2025, Fall 2025, Spring 2026",
+    year: "3×",
+  },
+  {
+    name: "Internship Coordinator Award",
     issuer: "Air University",
     year: "2026",
+  },
+  {
+    name: "Highest Feedback Award",
+    issuer: "Air University — Spring 2025",
+    year: "2025",
+  },
+  {
+    name: "PGDC Conference Organizer Award",
+    issuer: "Air University",
+    year: "2025",
+  },
+  {
+    name: "Air Tech Coordinator Award",
+    issuer: "Air University",
+    year: "2025",
+  },
+  {
+    name: "Best Performer Award",
+    issuer: "Air University",
+    year: "2025",
   },
   {
     name: "Chief Organiser, IoT Conference",
