@@ -50,9 +50,9 @@ export const hero = {
 };
 
 export const about = {
-  /** Replace with your own photo at  public/portrait.png  — or set to null. */
-  image: "/portrait.png" as string | null,
-  imageAlt: "Portrait of Altaf Hussain",
+  /** Swap the file at  public/portrait.jpg  — or set this to null for text-only. */
+  image: "/portrait.jpg" as string | null,
+  imageAlt: "Altaf Hussain",
   paragraphs: [
     "I lecture in the Department of Computer Games Development at Air University, Islamabad, where I teach game design, programming and digital asset creation, and supervise final-year projects from first concept through to deployment. In 2026 I began a PhD at Multimedia University in Malaysia.",
     "I've also run my own studio since 2015. Aquwa Soft builds software and games out of Islamabad, and founding it taught me the parts of this work that no coursework covers — pricing, hiring, and the difference between a product that ships and one that merely compiles. Alongside it I spent nearly two years as a Senior Software Quality Engineer at IKONIC, owning testing strategy across the SDLC.",

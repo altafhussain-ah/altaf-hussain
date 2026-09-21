@@ -36,14 +36,12 @@ The three things that live elsewhere:
 
 ### Images
 
-The repo ships with generated placeholder images so the site looks complete out
-of the box. **These are still placeholders — replace them:**
+`public/portrait.jpg` is the photo in the About section. The slot is 4:5 and
+uses `object-cover`, so anything portrait-shaped works — a taller image is
+simply cropped top and bottom. Set `about.image` to `null` in `site.ts` for a
+text-only About.
 
-- `public/portrait.png` — your photo for the About section (roughly 4:5)
-- `public/projects/*.png` — imagery for the research/project cards (roughly 16:10)
-
-Any format works — just update the path in `site.ts` to match. A project with
-`image: null` falls back to a typographic placeholder rather than a broken image.
+Research and project cards are typographic by design and carry no imagery.
 
 ### What is deliberately left off the site
 
