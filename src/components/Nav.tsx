@@ -8,12 +8,37 @@ import ThemeToggle from "./ThemeToggle";
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string>("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Highlight whichever section currently sits under the top third of the
+  // viewport. A band rather than a point, so short sections still register.
+  useEffect(() => {
+    const ids = navLinks.map((l) => l.href.replace("#", ""));
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-20% 0px -70% 0px", threshold: 0 },
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   // Don't let the page scroll behind the open mobile sheet.
@@ -34,7 +59,7 @@ export default function Nav() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "border-b border-line bg-paper/85 backdrop-blur-md"
+          ? "border-b border-line bg-paper/80 backdrop-blur-xl"
           : "border-b border-transparent"
       }`}
     >
@@ -53,16 +78,20 @@ export default function Nav() {
 
         <div className="hidden items-center gap-8 md:flex">
           <ul className="flex items-center gap-7">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={`/${link.href}`}
-                  className="link-underline text-sm text-ink-soft transition-colors hover:text-ink"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const id = link.href.replace("#", "");
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={`/${link.href}`}
+                    data-active={active === id}
+                    className="nav-link link-underline text-sm text-muted transition-colors hover:text-ink"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
           <ThemeToggle />
         </div>

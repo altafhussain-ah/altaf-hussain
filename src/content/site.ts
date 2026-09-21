@@ -21,7 +21,7 @@ export const site = {
   /** Absolute URL of the deployed site — used for SEO/social cards. */
   url: "https://altaf-hussain.vercel.app",
   description:
-    "Altaf Hussain — lecturer in game development at Air University and PhD researcher at Multimedia University, Malaysia. Background in software quality engineering and project management.",
+    "Altaf Hussain — lecturer in game development at Air University and PhD researcher at Multimedia University, Malaysia. Eleven years in software quality engineering and project delivery.",
   location: "Cyberjaya, Malaysia",
   email: "altafbintariq@gmail.com",
   /**
@@ -44,7 +44,7 @@ export const socials = [
 export const hero = {
   headline: "I teach game development, and research how software gets built.",
   subhead:
-    "Lecturer in the Department of Computer Games Development at Air University, and a PhD researcher at Multimedia University, Malaysia. Seven years across software quality engineering, project management and the classroom.",
+    "Lecturer in the Department of Computer Games Development at Air University, and a PhD researcher at Multimedia University, Malaysia. Eleven years across software quality engineering, project delivery and the classroom.",
   /** Small text above the headline. Set to null to hide it. */
   eyebrow: "PhD researcher at Multimedia University, Malaysia",
 };
@@ -55,7 +55,7 @@ export const about = {
   imageAlt: "Portrait of Altaf Hussain",
   paragraphs: [
     "I lecture in the Department of Computer Games Development at Air University, Islamabad, where I teach game design, programming and digital asset creation, and supervise final-year projects from first concept through to deployment. In 2026 I began a PhD at Multimedia University in Malaysia.",
-    "Before teaching I worked in industry. I spent nearly two years as a Senior Software Quality Engineer at IKONIC Solution, building testing strategies across the full development lifecycle, and before that two years as a Project Manager at Aquwa Soft, where I also handled game design, app store optimisation and Google Play account management.",
+    "Before teaching I spent a decade in industry quality engineering — six years at Aquwa Soft across the full software test lifecycle, then nearly two years as a Senior Software Quality Engineer at IKONIC, owning testing strategy across the SDLC. Along the way I picked up game design, app store optimisation and Google Play account management.",
     "My research sits where software engineering meets practice. My master's thesis was a systematic literature review of software-based requirement elicitation tools, and I currently have papers under review on that subject and on fake news detection using NLP and machine learning. I hold an MS in Software Engineering with distinction from Riphah International University.",
     "Outside the lecture hall, I spent five years volunteering as a computer science teacher in under-resourced communities around Islamabad — work that shaped how I think about teaching more than any training course has.",
   ],
@@ -63,7 +63,7 @@ export const about = {
   facts: [
     { label: "Based in", value: "Cyberjaya, MY" },
     { label: "Focus", value: "Game dev & SQA" },
-    { label: "Experience", value: "7+ years" },
+    { label: "Experience", value: "11+ years" },
     { label: "Currently", value: "PhD researcher" },
   ],
 };
@@ -72,15 +72,13 @@ export type Project = {
   title: string;
   /** One line. What it is, not how it was made. */
   blurb: string;
-  /** A short paragraph shown when the card expands into the grid. */
+  /** A short paragraph shown on the featured card. */
   description: string;
   year: string;
   tags: string[];
   /** Optional links — omit or set to null and the button won't render. */
   live?: string | null;
   source?: string | null;
-  /** Put images in  public/projects/  and reference as "/projects/name.png" */
-  image?: string | null;
   /** Mark your best two or three. Featured items get a larger card. */
   featured?: boolean;
 };
@@ -96,7 +94,6 @@ export const projects: Project[] = [
     tags: ["Requirements Engineering", "Systematic Review", "Research"],
     live: null,
     source: null,
-    image: "/projects/ledger.png",
     featured: true,
   },
   {
@@ -109,7 +106,6 @@ export const projects: Project[] = [
     tags: ["NLP", "Machine Learning", "Research"],
     live: null,
     source: null,
-    image: "/projects/tonebank.png",
     featured: true,
   },
   {
@@ -122,7 +118,6 @@ export const projects: Project[] = [
     tags: ["Game Development", "Community", "Events"],
     live: null,
     source: null,
-    image: "/projects/fieldnotes.png",
     featured: true,
   },
   {
@@ -135,7 +130,6 @@ export const projects: Project[] = [
     tags: ["Web Development", "Search", "Final Year Project"],
     live: null,
     source: null,
-    image: null,
   },
   {
     title: "IoT Conference, Islamabad",
@@ -147,7 +141,6 @@ export const projects: Project[] = [
     tags: ["Events", "IoT", "Leadership"],
     live: null,
     source: null,
-    image: null,
   },
 ];
 
@@ -224,35 +217,42 @@ export type Role = {
   stack?: string[];
 };
 
+/**
+ * Titles, companies and dates follow the LinkedIn profile, which is the more
+ * current record. Note: the EuroPass CV lists the Aquwa Soft role as
+ * "Project Manager, Sep 2019 – Oct 2021"; LinkedIn lists it as
+ * "Software Quality Engineer, Sep 2015 – Oct 2021". LinkedIn is used here.
+ */
 export const experience: Role[] = [
   {
     company: "Air University",
     title: "Lecturer, Computer Games Development",
-    period: "2024 — Present",
+    period: "Sep 2024 — Present",
     location: "Islamabad, Pakistan",
     points: [
       "Teach game design principles, programming and digital asset creation, and supervise individual and group projects across the full development lifecycle from concept to deployment.",
       "Awarded Best Teacher for Spring 2026 — the third consecutive time — by the Department of Computer Games Development.",
       "Run workshops and seminars on AI in games, 3D modelling, animation and game physics, and bring in guest lectures and collaborations with working industry professionals.",
-      "Contribute to curriculum development and new courses, keeping the programme aligned with where the games industry is actually going.",
+      "Contribute to curriculum development and academic strategy, keeping the programme aligned with where the games industry is actually going.",
     ],
-    stack: ["Unity", "Game Design", "AI in Games", "Curriculum"],
+    stack: ["Unity", "Game Design", "AI in Games", "Curriculum", "Supervision"],
   },
   {
     company: "British Council",
     title: "Test Day Officer",
-    period: "2023 — 2024",
+    period: "Sep 2023 — Aug 2024",
     location: "Islamabad, Pakistan",
     points: [
       "Ran test day operations: candidate attendance and participation tracking, session coordination, and venue planning.",
       "Handled secure storage, transfer and reconciliation of test materials to compliance standards, escalating any discrepancies.",
-      "Managed results processing and timely submission of session recordings and reports for review.",
+      "Managed results processing and the timely review and submission of session records for further evaluation.",
     ],
+    stack: ["Operations", "Compliance", "Coordination"],
   },
   {
-    company: "IKONIC Solution",
+    company: "IKONIC",
     title: "Senior Software Quality Engineer",
-    period: "2021 — 2023",
+    period: "Nov 2021 — Aug 2023",
     location: "Islamabad, Pakistan",
     points: [
       "Owned testing strategy, planning and case design across the full SDLC — system, regression and performance testing in an agile (Scrum) environment.",
@@ -262,17 +262,34 @@ export const experience: Role[] = [
     stack: ["JMeter", "SQL", "TFS", "Microsoft Test Manager", "Scrum"],
   },
   {
-    company: "Aquwa Soft",
-    title: "Project Manager",
-    period: "2019 — 2021",
+    company: "WEBEXERT",
+    title: "Software Quality Assurance Engineer",
+    period: "Oct 2021 — Nov 2021",
     location: "Islamabad, Pakistan",
     points: [
-      "Led project teams through all phases of delivery — planning, timelines, milestones and resource allocation — and owned the quality assurance process for deliverables.",
-      "Designed original game concepts and mechanics, maintained design documents and level layouts, and ran playtesting sessions to refine gameplay.",
-      "Handled app store optimisation and Google Play Console management: keyword research, metadata optimisation, and monitoring app performance and user feedback.",
+      "Short engagement covering functional and regression testing across web applications.",
     ],
-    stack: ["Project Management", "Game Design", "ASO", "Google Play Console"],
   },
+  {
+    company: "Aquwa Soft",
+    title: "Software Quality Engineer",
+    period: "Sep 2015 — Oct 2021",
+    location: "Islamabad, Pakistan",
+    points: [
+      "Six years across the full software test lifecycle — sanity, functional, unit, integration, usability, smoke, data validation, system, exploratory, regression and user acceptance testing.",
+      "Maintained monthly defect reporting, triaging issues by severity and impact on the application, and ran the complete quality control cycle from test through logging to verification.",
+      "Authored and maintained technical documentation — test plans, test cases and test summary reports — and conducted inspection and review of use case documents.",
+    ],
+    stack: ["Black Box Testing", "STLC", "Test Planning", "Defect Management"],
+  },
+];
+
+/** The band of numbers under the hero. Keep these to four. */
+export const stats = [
+  { value: 11, suffix: "+", label: "Years in software" },
+  { value: 3, suffix: "×", label: "Best Teacher Award" },
+  { value: 2, suffix: "", label: "Papers under review" },
+  { value: 10, suffix: "+", label: "Certifications" },
 ];
 
 export type Education = {
@@ -287,7 +304,8 @@ export const education: Education[] = [
     school: "Multimedia University",
     credential: "PhD, in progress",
     period: "2026 — Present",
-    detail: "Cyberjaya, Malaysia. Research in game development and software engineering.",
+    detail:
+      "Cyberjaya, Malaysia. Research in game development and software engineering.",
   },
   {
     school: "Riphah International University",

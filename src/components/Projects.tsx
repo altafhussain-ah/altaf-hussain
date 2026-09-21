@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { projects, type Project } from "@/content/site";
 import Reveal from "./Reveal";
 import Section from "./Section";
@@ -14,19 +13,19 @@ export default function Projects() {
       title="Research & projects."
       intro="Published and in-progress research, alongside the projects and events I've built and led."
     >
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {featured.map((project, i) => (
-          <Reveal key={project.title} delay={i * 100} as="article">
-            <FeaturedCard project={project} />
+          <Reveal key={project.title} delay={i * 110} as="article">
+            <FeaturedCard project={project} index={i + 1} />
           </Reveal>
         ))}
       </div>
 
       {rest.length > 0 ? (
-        <div className="mt-16 border-t border-line">
+        <div className="mt-14 border-t border-line">
           {rest.map((project, i) => (
-            <Reveal key={project.title} delay={i * 70} as="article">
-              <CompactRow project={project} />
+            <Reveal key={project.title} delay={i * 80} as="article">
+              <CompactRow project={project} index={featured.length + i + 1} />
             </Reveal>
           ))}
         </div>
@@ -35,60 +34,77 @@ export default function Projects() {
   );
 }
 
-function FeaturedCard({ project }: { project: Project }) {
+function FeaturedCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
   return (
-    <div className="group flex h-full flex-col overflow-hidden rounded-sm border border-line bg-paper-raised transition-colors hover:border-line-strong">
-      <div className="relative aspect-16/10 overflow-hidden border-b border-line bg-accent-soft">
-        {project.image ? (
-          <Image
-            src={project.image}
-            alt={`${project.title} — preview`}
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-          />
-        ) : (
-          <InitialMark title={project.title} />
-        )}
+    <div className="card group flex h-full flex-col overflow-hidden rounded-sm p-7">
+      <div className="flex items-start justify-between gap-4">
+        <span
+          aria-hidden="true"
+          className="nums-tabular font-serif text-5xl leading-none text-line-strong transition-colors duration-500 group-hover:text-accent/45"
+        >
+          {String(index).padStart(2, "0")}
+        </span>
+        <span className="nums-tabular shrink-0 pt-2 text-xs text-muted">
+          {project.year}
+        </span>
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
-        <div className="flex items-baseline justify-between gap-4">
-          <h3 className="font-serif text-2xl text-ink">{project.title}</h3>
-          <span className="nums-tabular shrink-0 text-xs text-muted">
-            {project.year}
-          </span>
-        </div>
+      <h3 className="mt-6 font-serif text-2xl leading-tight text-ink">
+        {project.title}
+      </h3>
+      <p className="mt-2 text-sm font-medium text-ink-soft">{project.blurb}</p>
 
-        <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-          {project.description}
-        </p>
+      <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
+        {project.description}
+      </p>
 
-        <ul className="mt-5 flex flex-wrap gap-1.5">
-          {project.tags.map((tag) => (
-            <li
-              key={tag}
-              className="rounded-full border border-line px-2.5 py-1 text-xs text-muted"
-            >
-              {tag}
-            </li>
-          ))}
-        </ul>
+      <ul className="mt-6 flex flex-wrap gap-1.5">
+        {project.tags.map((tag, i) => (
+          <li
+            key={tag}
+            className="chip rounded-full border border-line px-2.5 py-1 text-xs text-muted"
+            style={{ ["--chip-delay" as string]: `${i * 60}ms` }}
+          >
+            {tag}
+          </li>
+        ))}
+      </ul>
 
-        <ProjectLinks project={project} className="mt-6 pt-5" />
-      </div>
+      <ProjectLinks project={project} className="mt-6 border-t border-line pt-5" />
     </div>
   );
 }
 
-function CompactRow({ project }: { project: Project }) {
+function CompactRow({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
   return (
-    <div className="group grid items-baseline gap-x-6 gap-y-2 border-b border-line py-7 md:grid-cols-12">
-      <div className="md:col-span-4">
-        <h3 className="font-serif text-xl text-ink">{project.title}</h3>
-        <span className="nums-tabular mt-1 block text-xs text-muted md:hidden">
-          {project.year}
+    <div className="group grid items-baseline gap-x-6 gap-y-2 border-b border-line py-7 transition-colors md:grid-cols-12">
+      <div className="flex items-baseline gap-4 md:col-span-4">
+        <span
+          aria-hidden="true"
+          className="nums-tabular text-xs text-line-strong transition-colors duration-500 group-hover:text-accent"
+        >
+          {String(index).padStart(2, "0")}
         </span>
+        <div>
+          <h3 className="font-serif text-xl text-ink transition-colors duration-300 group-hover:text-accent">
+            {project.title}
+          </h3>
+          <span className="nums-tabular mt-1 block text-xs text-muted md:hidden">
+            {project.year}
+          </span>
+        </div>
       </div>
 
       <p className="text-sm leading-relaxed text-ink-soft md:col-span-5">
@@ -124,18 +140,14 @@ function ProjectLinks({
   if (links.length === 0) return null;
 
   return (
-    <div
-      className={`flex flex-wrap items-center gap-4 ${
-        compact ? "" : "mt-auto border-t border-line"
-      } ${className}`}
-    >
+    <div className={`flex flex-wrap items-center gap-4 ${className}`}>
       {links.map((link) => (
         <a
           key={link.label}
           href={link.href}
           target="_blank"
           rel="noreferrer noopener"
-          className="link-underline inline-flex items-center gap-1 text-sm font-medium text-ink"
+          className="group/link link-underline inline-flex items-center gap-1.5 text-sm font-medium text-ink"
         >
           {link.label}
           <svg
@@ -145,32 +157,13 @@ function ProjectLinks({
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="size-3.5"
+            className="size-3.5 transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
             aria-hidden="true"
           >
             <path d="M7 17 17 7M9 7h8v8" />
           </svg>
         </a>
       ))}
-    </div>
-  );
-}
-
-/** Stand-in when a project has no screenshot yet — reads as deliberate, not broken. */
-function InitialMark({ title }: { title: string }) {
-  return (
-    <div className="absolute inset-0 grid place-items-center">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 opacity-[0.16]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(45deg, var(--accent) 0 1px, transparent 1px 11px)",
-        }}
-      />
-      <span className="relative font-serif text-6xl text-accent/45">
-        {title.charAt(0)}
-      </span>
     </div>
   );
 }

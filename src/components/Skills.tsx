@@ -16,10 +16,11 @@ export default function Skills() {
             <div className="border-t border-line pt-5">
               <h3 className="eyebrow">{group.group}</h3>
               <ul className="mt-4 flex flex-wrap gap-2">
-                {group.items.map((item) => (
+                {group.items.map((item, j) => (
                   <li
                     key={item}
-                    className="rounded-full bg-paper-raised px-3 py-1.5 text-sm text-ink-soft ring-1 ring-line transition-colors hover:text-ink hover:ring-line-strong"
+                    className="chip rounded-full bg-paper-raised px-3 py-1.5 text-sm text-ink-soft ring-1 ring-line hover:text-ink hover:ring-line-strong"
+                    style={{ ["--chip-delay" as string]: `${j * 50}ms` }}
                   >
                     {item}
                   </li>

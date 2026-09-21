@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { hero, site, socials } from "@/content/site";
+import AnimatedHeadline from "./AnimatedHeadline";
 import Reveal from "./Reveal";
+import Spotlight from "./Spotlight";
+import Stats from "./Stats";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden pt-36 pb-20 md:pt-48 md:pb-28">
-      {/* A soft warm wash behind the headline. Purely atmospheric. */}
-      <div
-        aria-hidden="true"
-        className="hero-glow pointer-events-none absolute -top-40 left-1/2 h-[42rem] w-[72rem] -translate-x-1/2 rounded-full blur-3xl"
-      />
+    <section className="relative overflow-hidden pt-36 pb-16 md:pt-44 md:pb-24">
+      <div className="hero-glow pointer-events-none absolute -top-40 left-1/2 h-[42rem] w-[72rem] -translate-x-1/2 rounded-full blur-3xl" />
+      <Spotlight />
 
       <div className="container-editorial relative">
         {hero.eyebrow ? (
@@ -24,36 +24,43 @@ export default function Hero() {
           </Reveal>
         ) : null}
 
-        <Reveal delay={80}>
-          <h1 className="mt-6 max-w-5xl font-serif text-display text-ink">
-            {hero.headline}
-          </h1>
+        <AnimatedHeadline
+          text={hero.headline}
+          className="mt-6 max-w-5xl font-serif text-display text-ink"
+        />
+
+        <Reveal delay={420}>
+          <p className="mt-8 max-w-2xl text-lead text-ink-soft">
+            {hero.subhead}
+          </p>
         </Reveal>
 
-        <Reveal delay={160}>
-          <p className="mt-8 max-w-xl text-lead text-ink-soft">{hero.subhead}</p>
-        </Reveal>
-
-        <Reveal delay={240}>
+        <Reveal delay={520}>
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <Link
               href="#work"
-              className="rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper transition-transform hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper transition-transform duration-300 hover:-translate-y-0.5"
             >
               See the work
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              >
+                &rarr;
+              </span>
             </Link>
             <Link
               href="#contact"
-              className="rounded-full border border-line-strong px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-paper-raised"
+              className="rounded-full border border-line-strong px-6 py-3 text-sm font-medium text-ink transition-colors duration-300 hover:bg-paper-raised"
             >
               Get in touch
             </Link>
           </div>
         </Reveal>
 
-        <Reveal delay={320}>
-          <div className="mt-16 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-line pt-6 text-sm text-muted">
-            <span className="nums-tabular">{site.location}</span>
+        <Reveal delay={600}>
+          <div className="mt-12 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-muted">
+            <span>{site.location}</span>
             <span aria-hidden="true" className="text-line-strong">
               /
             </span>
@@ -68,6 +75,12 @@ export default function Hero() {
                 {s.label}
               </a>
             ))}
+          </div>
+        </Reveal>
+
+        <Reveal delay={680}>
+          <div className="mt-14">
+            <Stats />
           </div>
         </Reveal>
       </div>
