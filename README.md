@@ -37,19 +37,36 @@ The three things that live elsewhere:
 ### Images
 
 The repo ships with generated placeholder images so the site looks complete out
-of the box. Replace them with your own:
+of the box. **These are still placeholders — replace them:**
 
 - `public/portrait.png` — your photo for the About section (roughly 4:5)
-- `public/projects/*.png` — project screenshots (roughly 16:10)
-- `public/resume.pdf` — add this and the "Download résumé" link works
+- `public/projects/*.png` — imagery for the research/project cards (roughly 16:10)
 
 Any format works — just update the path in `site.ts` to match. A project with
 `image: null` falls back to a typographic placeholder rather than a broken image.
 
+### What is deliberately left off the site
+
+The site is public, so some CV material is excluded by design:
+
+| Left out | Why |
+| --- | --- |
+| Date of birth, home address, mobile number | Public personal data invites spam and worse |
+| Referee names and contact details | Publishing third parties' emails and phone numbers without their consent |
+| CV download | The EuroPass PDF contains all of the above |
+
+To enable a résumé link, produce a redacted PDF, save it as
+`public/resume.pdf`, and set `resume: "/resume.pdf"` in `site.ts`. The link
+stays hidden while that value is `null`.
+
 ### Blog posts
 
-Add a markdown file to `content/posts/`. The filename becomes the URL slug, so
-`content/posts/my-post.md` is served at `/blog/my-post`.
+`content/posts/` is currently empty, so the Writing section hides itself on the
+home page and `/blog` shows an empty state. The machinery still works — add a
+markdown file and both come back automatically.
+
+The filename becomes the URL slug, so `content/posts/my-post.md` is served at
+`/blog/my-post`.
 
 ```markdown
 ---
@@ -94,28 +111,20 @@ Ships light-first with a toggle in the nav; the choice persists in
 check in the `themeScript` in `layout.tsx` to
 `window.matchMedia("(prefers-color-scheme: dark)").matches`.
 
-## Before you deploy
+## Deployment
 
-1. Set `site.url` in `site.ts` to your real domain — SEO metadata, the sitemap
-   and social cards all derive from it.
-2. Replace the placeholder content in `site.ts` (projects, jobs, testimonials
-   and socials are all sample copy).
-3. Add `public/resume.pdf`.
+Live at **https://altaf-hussain.vercel.app**, deployed from
+[Vercel](https://vercel.com) and wired to this repository. Push to `main` and
+Vercel rebuilds automatically — usually live within a minute.
 
-## Deploying
-
-The site is fully static. [Vercel](https://vercel.com) is the least-friction
-option — push to GitHub, import the repo, and it deploys with no configuration.
-Netlify, Cloudflare Pages and GitHub Pages all work too.
-
-Note: `git` isn't installed on this machine yet. Install it from
-[git-scm.com](https://git-scm.com/download/win) if you want to push to GitHub.
+`site.url` in `site.ts` must match the deployed domain; the sitemap, canonical
+URLs and social card metadata all derive from it.
 
 ## Structure
 
 ```
-content/posts/        Blog posts (markdown)
-public/               Images, résumé, static files
+content/posts/        Blog posts (markdown) — currently empty
+public/               Images and static files
 src/
   app/
     layout.tsx        Fonts, metadata, theme script
@@ -128,6 +137,10 @@ src/
   content/site.ts     ← all your content
   lib/posts.ts        Markdown reading and parsing
 ```
+
+Sections render in this order, set in `src/app/page.tsx`: Hero, About,
+Research & projects, Experience, Skills, Education, Credentials, Writing
+(hidden while empty), Contact.
 
 ## Accessibility
 

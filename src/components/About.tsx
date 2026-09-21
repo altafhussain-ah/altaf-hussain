@@ -7,7 +7,7 @@ export default function About() {
   return (
     <Section
       id="about"
-      eyebrow="01 — About"
+      eyebrow="About"
       title="A short version."
       divider={false}
     >
@@ -27,26 +27,29 @@ export default function About() {
             </Reveal>
           ))}
 
-          <Reveal delay={about.paragraphs.length * 90}>
-            <a
-              href={site.resume}
-              className="link-underline mt-10 inline-flex items-center gap-2 text-sm font-medium text-ink"
-            >
-              Download résumé
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="size-4"
-                aria-hidden="true"
+          {/* Hidden until site.resume points at a redacted CV — see site.ts. */}
+          {site.resume ? (
+            <Reveal delay={about.paragraphs.length * 90}>
+              <a
+                href={site.resume}
+                className="link-underline mt-10 inline-flex items-center gap-2 text-sm font-medium text-ink"
               >
-                <path d="M12 3v13m0 0 4.5-4.5M12 16l-4.5-4.5M4 20h16" />
-              </svg>
-            </a>
-          </Reveal>
+                Download résumé
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="size-4"
+                  aria-hidden="true"
+                >
+                  <path d="M12 3v13m0 0 4.5-4.5M12 16l-4.5-4.5M4 20h16" />
+                </svg>
+              </a>
+            </Reveal>
+          ) : null}
         </div>
 
         <div className="lg:col-span-5">

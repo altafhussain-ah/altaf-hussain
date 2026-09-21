@@ -10,9 +10,9 @@ export default function Projects() {
   return (
     <Section
       id="work"
-      eyebrow="02 — Selected work"
-      title="Things I've built."
-      intro="A few projects I keep coming back to. Each one taught me something I still use."
+      eyebrow="Selected work"
+      title="Research & projects."
+      intro="Published and in-progress research, alongside the projects and events I've built and led."
     >
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {featured.map((project, i) => (
@@ -119,13 +119,9 @@ function ProjectLinks({
     { href: project.source, label: compact ? "Code" : "Source" },
   ].filter((l): l is { href: string; label: string } => Boolean(l.href));
 
-  if (links.length === 0) {
-    return compact ? null : (
-      <p className={`mt-auto text-xs text-muted ${className}`}>
-        Private project
-      </p>
-    );
-  }
+  // Research entries often have nothing to link to yet — render nothing
+  // rather than an apologetic placeholder.
+  if (links.length === 0) return null;
 
   return (
     <div

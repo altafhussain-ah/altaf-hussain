@@ -1,60 +1,70 @@
 /**
  * ─────────────────────────────────────────────────────────────
- *  EDIT THIS FILE TO MAKE THE SITE YOURS.
+ *  EDIT THIS FILE TO UPDATE THE SITE.
  *  Everything the site displays lives here. No other file needs
  *  to change for normal content updates.
  *
  *  Blog posts are the one exception — those are markdown files
- *  in  content/posts/*.md
+ *  in  content/posts/*.md  (currently empty; the Writing
+ *  section hides itself until you add one).
+ *
+ *  Sourced from the EuroPass CV and LinkedIn profile.
+ *  Deliberately excluded: date of birth, home address, mobile
+ *  number, and referee contact details — see README.
  * ─────────────────────────────────────────────────────────────
  */
 
 export const site = {
-  /** Used in the browser tab, SEO metadata, and the footer. */
-  name: "Altaf",
+  name: "Altaf Hussain",
   /** Shown under your name in the hero. Keep it to one line. */
-  role: "Software Engineer & Designer",
+  role: "Lecturer & Game Development Researcher",
   /** Absolute URL of the deployed site — used for SEO/social cards. */
   url: "https://altaf-hussain.vercel.app",
-  /** One sentence for search engines and link previews. */
   description:
-    "Portfolio of Altaf — engineer and designer building thoughtful software for the web.",
-  location: "Karachi, Pakistan",
+    "Altaf Hussain — lecturer in game development at Air University and PhD researcher at Multimedia University, Malaysia. Background in software quality engineering and project management.",
+  location: "Cyberjaya, Malaysia",
   email: "altafbintariq@gmail.com",
-  /** Put your CV at  public/resume.pdf  and this link just works. */
-  resume: "/resume.pdf",
+  /**
+   * Set to a path like "/resume.pdf" to show a download link in About.
+   * Left null on purpose: the EuroPass CV contains a home address,
+   * date of birth, mobile number and three referees' contact details.
+   * Publish a redacted copy before enabling this.
+   */
+  resume: null as string | null,
 };
 
 export const socials = [
-  { label: "GitHub", href: "https://github.com/yourhandle" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/yourhandle" },
-  { label: "X", href: "https://x.com/yourhandle" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/altaf-hussain-096388108/",
+  },
+  { label: "GitHub", href: "https://github.com/altafhussain-ah" },
 ] satisfies { label: string; href: string }[];
 
-/** The big statement on the landing screen. Two or three short sentences. */
 export const hero = {
-  headline: "I build software that feels considered.",
+  headline: "I teach game development, and research how software gets built.",
   subhead:
-    "Engineer and designer working across the stack — from data models to the last pixel. Currently open to new work.",
+    "Lecturer in the Department of Computer Games Development at Air University, and a PhD researcher at Multimedia University, Malaysia. Seven years across software quality engineering, project management and the classroom.",
   /** Small text above the headline. Set to null to hide it. */
-  eyebrow: "Available for select projects",
+  eyebrow: "PhD researcher at Multimedia University, Malaysia",
 };
 
 export const about = {
-  /** Swap in your own photo at  public/portrait.png  — or set this to null for a text-only About. */
+  /** Replace with your own photo at  public/portrait.png  — or set to null. */
   image: "/portrait.png" as string | null,
-  imageAlt: "Portrait of Altaf",
+  imageAlt: "Portrait of Altaf Hussain",
   paragraphs: [
-    "I'm a software engineer and designer with a habit of caring about the parts most people skip — the empty states, the error copy, the moment a page first paints. I've spent the last several years building products end to end, which mostly means being comfortable moving between a database schema and a type ramp in the same afternoon.",
-    "Before this I studied computer science, then spent a while convinced I'd be a designer, then a while convinced I'd be an engineer. The honest answer is that the interesting problems live in the seam between the two, so that's where I work.",
-    "Outside of work I read more than I finish, take photographs I rarely print, and am slowly getting better at cooking without a recipe.",
+    "I lecture in the Department of Computer Games Development at Air University, Islamabad, where I teach game design, programming and digital asset creation, and supervise final-year projects from first concept through to deployment. In 2026 I began a PhD at Multimedia University in Malaysia.",
+    "Before teaching I worked in industry. I spent nearly two years as a Senior Software Quality Engineer at IKONIC Solution, building testing strategies across the full development lifecycle, and before that two years as a Project Manager at Aquwa Soft, where I also handled game design, app store optimisation and Google Play account management.",
+    "My research sits where software engineering meets practice. My master's thesis was a systematic literature review of software-based requirement elicitation tools, and I currently have papers under review on that subject and on fake news detection using NLP and machine learning. I hold an MS in Software Engineering with distinction from Riphah International University.",
+    "Outside the lecture hall, I spent five years volunteering as a computer science teacher in under-resourced communities around Islamabad — work that shaped how I think about teaching more than any training course has.",
   ],
   /** Short, scannable facts shown beside the prose. */
   facts: [
-    { label: "Based in", value: "Karachi, PK" },
-    { label: "Focus", value: "Product engineering" },
-    { label: "Experience", value: "5+ years" },
-    { label: "Open to", value: "Full-time & contract" },
+    { label: "Based in", value: "Cyberjaya, MY" },
+    { label: "Focus", value: "Game dev & SQA" },
+    { label: "Experience", value: "7+ years" },
+    { label: "Currently", value: "PhD researcher" },
   ],
 };
 
@@ -69,79 +79,73 @@ export type Project = {
   /** Optional links — omit or set to null and the button won't render. */
   live?: string | null;
   source?: string | null;
-  /** Put images in  public/projects/  and reference them as "/projects/name.jpg" */
+  /** Put images in  public/projects/  and reference as "/projects/name.png" */
   image?: string | null;
-  /** Mark your best two or three. Featured projects get a larger card. */
+  /** Mark your best two or three. Featured items get a larger card. */
   featured?: boolean;
 };
 
 export const projects: Project[] = [
   {
-    title: "Ledger",
-    blurb: "A double-entry accounting engine with a spreadsheet on top.",
+    title: "Requirement Elicitation Tools",
+    blurb:
+      "A systematic literature review of software-based requirement elicitation tools.",
     description:
-      "A financial tracking tool for small studios. The core is a strict double-entry ledger; the interface is a familiar grid that hides the accounting until you need it. Handles multi-currency, recurring entries, and exports that accountants actually accept.",
+      "Maps the challenges and selection criteria for tool-supported requirements elicitation, and identifies gaps the field has yet to close — the distance between theory and practice, how elicitation knowledge is captured and reused, and where emerging web and agent-based architectures fit into the next generation of support tools. Began as my MS thesis; currently under review for publication.",
     year: "2025",
-    tags: ["TypeScript", "Next.js", "Postgres", "Prisma"],
-    live: "https://example.com",
-    source: "https://github.com/yourhandle/ledger",
+    tags: ["Requirements Engineering", "Systematic Review", "Research"],
+    live: null,
+    source: null,
     image: "/projects/ledger.png",
     featured: true,
   },
   {
-    title: "Fieldnotes",
-    blurb: "Offline-first note-taking for people doing research in the field.",
+    title: "Fake News Detection",
+    blurb:
+      "Meta model extraction for fake news detection using NLP and machine learning.",
     description:
-      "Built for researchers working where connectivity isn't a given. Local-first storage with conflict-free sync when a signal returns, full-text search over thousands of entries, and an export pipeline that produces citable documents.",
-    year: "2024",
-    tags: ["React", "SQLite", "CRDT", "Tauri"],
+      "Applies natural language processing and machine learning to the detection of misinformation, using meta model extraction to improve classification. Co-authored with Shahzad Khan and currently under review for publication.",
+    year: "2025",
+    tags: ["NLP", "Machine Learning", "Research"],
     live: null,
-    source: "https://github.com/yourhandle/fieldnotes",
-    image: "/projects/fieldnotes.png",
-    featured: true,
-  },
-  {
-    title: "Tonebank",
-    blurb: "A colour-system generator that checks its own contrast.",
-    description:
-      "Give it a brand colour and it produces a full accessible ramp — tints, shades, and semantic tokens — validating every pairing against WCAG as it goes. Exports to CSS variables, Tailwind config, or Figma variables.",
-    year: "2024",
-    tags: ["Design systems", "Colour science", "Figma API"],
-    live: "https://example.com",
     source: null,
     image: "/projects/tonebank.png",
     featured: true,
   },
   {
-    title: "Sift",
-    blurb: "Natural-language filtering for large CSV files in the browser.",
+    title: "Pakistan Game Developers Conference",
+    blurb:
+      "A national platform for game designers, developers and artists, hosted at Air University.",
     description:
-      "Drop in a file of a few million rows and ask questions in plain English. Parses and indexes entirely client-side — nothing is uploaded — then compiles your question into a query plan you can inspect and edit.",
-    year: "2023",
-    tags: ["WebAssembly", "DuckDB", "LLM"],
-    live: "https://example.com",
-    source: "https://github.com/yourhandle/sift",
-    image: null,
-  },
-  {
-    title: "Marginalia",
-    blurb: "A reading app that keeps your notes next to the text.",
-    description:
-      "An EPUB reader built around annotation rather than consumption. Highlights and notes live in the margin, sync across devices, and export to Markdown so your reading actually compounds into something.",
-    year: "2023",
-    tags: ["Swift", "SwiftUI", "CloudKit"],
+      "The second PGDC brought together designers, developers, artists and storytellers from across Pakistan for a gaming ideathon, prototype competition, game jam, industry workshops and a careers fair — organised through the Department of Computer Games Development.",
+    year: "2025",
+    tags: ["Game Development", "Community", "Events"],
     live: null,
-    source: "https://github.com/yourhandle/marginalia",
+    source: null,
+    image: "/projects/fieldnotes.png",
+    featured: true,
+  },
+  {
+    title: "Academic Guider",
+    blurb:
+      "A web-based search engine for matching students to schools and colleges.",
+    description:
+      "Final-year project for my BE at UET Taxila. A filtered search tool that helps students find the school or college that best fits their requirements, rather than making them trawl through institution listings by hand.",
+    year: "2016",
+    tags: ["Web Development", "Search", "Final Year Project"],
+    live: null,
+    source: null,
     image: null,
   },
   {
-    title: "Pace",
-    blurb: "Training-load tracking for runners who hate training apps.",
+    title: "IoT Conference, Islamabad",
+    blurb:
+      "Chief organiser of an IoT conference at the Jinnah Convention Centre.",
     description:
-      "One screen, one number: are you doing too much this week? Pulls from Strava, computes acute-to-chronic workload ratio, and says nothing else. Deliberately feature-poor.",
-    year: "2022",
-    tags: ["Go", "Strava API", "Charts"],
-    live: "https://example.com",
+      "Led organisation of a conference on the Internet of Things at the Jinnah Convention Centre, Islamabad — coordinating speakers, programme and logistics.",
+    year: "2017",
+    tags: ["Events", "IoT", "Leadership"],
+    live: null,
     source: null,
     image: null,
   },
@@ -151,24 +155,62 @@ export type SkillGroup = { group: string; items: string[] };
 
 export const skills: SkillGroup[] = [
   {
+    group: "Quality Engineering",
+    items: [
+      "Functional & non-functional testing",
+      "Test case design",
+      "Regression testing",
+      "Performance testing (JMeter)",
+      "TFS & Microsoft Test Manager",
+      "Traceability matrices",
+      "Root cause analysis",
+    ],
+  },
+  {
+    group: "Game Development",
+    items: [
+      "Unity",
+      "Game design documents",
+      "Prototyping & playtesting",
+      "Level design",
+      "AI in games",
+      "3D modelling & animation",
+    ],
+  },
+  {
+    group: "Project & Process",
+    items: [
+      "Agile",
+      "Scrum",
+      "Project planning",
+      "Jira & Trello",
+      "Team management",
+      "Stakeholder communication",
+    ],
+  },
+  {
+    group: "Data & Development",
+    items: [
+      "SQL",
+      "Python",
+      "Web development",
+      "Data visualisation",
+      "Data analysis",
+    ],
+  },
+  {
+    group: "Tools & Platforms",
+    items: [
+      "Figma",
+      "Adobe Photoshop",
+      "Google Play Console",
+      "Sensor Tower",
+      "Microsoft Office",
+    ],
+  },
+  {
     group: "Languages",
-    items: ["TypeScript", "JavaScript", "Python", "Go", "SQL", "Swift"],
-  },
-  {
-    group: "Frontend",
-    items: ["React", "Next.js", "Tailwind CSS", "SwiftUI", "Accessibility"],
-  },
-  {
-    group: "Backend & Data",
-    items: ["Node.js", "Postgres", "Prisma", "Redis", "REST & tRPC"],
-  },
-  {
-    group: "Design",
-    items: ["Figma", "Design systems", "Typography", "Prototyping"],
-  },
-  {
-    group: "Practice",
-    items: ["Testing", "CI/CD", "Docker", "Observability", "Code review"],
+    items: ["Punjabi (native)", "Urdu (C1–C2)", "English (B2)"],
   },
 ];
 
@@ -184,37 +226,52 @@ export type Role = {
 
 export const experience: Role[] = [
   {
-    company: "Northwind Studio",
-    title: "Senior Product Engineer",
-    period: "2023 — Present",
-    location: "Remote",
+    company: "Air University",
+    title: "Lecturer, Computer Games Development",
+    period: "2024 — Present",
+    location: "Islamabad, Pakistan",
     points: [
-      "Led the rebuild of the client dashboard, cutting median time-to-interactive from 4.1s to 1.2s and lifting weekly active use by roughly a third.",
-      "Designed and shipped the shared component library now used across four product teams, which removed about 12k lines of duplicated UI code.",
-      "Set up the review and release process the team still runs: trunk-based, feature-flagged, with a deploy that takes under six minutes.",
+      "Teach game design principles, programming and digital asset creation, and supervise individual and group projects across the full development lifecycle from concept to deployment.",
+      "Awarded Best Teacher for Spring 2026 — the third consecutive time — by the Department of Computer Games Development.",
+      "Run workshops and seminars on AI in games, 3D modelling, animation and game physics, and bring in guest lectures and collaborations with working industry professionals.",
+      "Contribute to curriculum development and new courses, keeping the programme aligned with where the games industry is actually going.",
     ],
-    stack: ["TypeScript", "Next.js", "Postgres", "AWS"],
+    stack: ["Unity", "Game Design", "AI in Games", "Curriculum"],
   },
   {
-    company: "Halcyon Labs",
-    title: "Full-Stack Engineer",
+    company: "British Council",
+    title: "Test Day Officer",
+    period: "2023 — 2024",
+    location: "Islamabad, Pakistan",
+    points: [
+      "Ran test day operations: candidate attendance and participation tracking, session coordination, and venue planning.",
+      "Handled secure storage, transfer and reconciliation of test materials to compliance standards, escalating any discrepancies.",
+      "Managed results processing and timely submission of session recordings and reports for review.",
+    ],
+  },
+  {
+    company: "IKONIC Solution",
+    title: "Senior Software Quality Engineer",
     period: "2021 — 2023",
-    location: "Karachi, PK",
+    location: "Islamabad, Pakistan",
     points: [
-      "Built the billing and subscription system end to end, handling multi-currency pricing and proration for around 30k accounts.",
-      "Took the API from an undocumented mess to a typed, versioned surface with generated clients — support tickets about integration dropped noticeably.",
-      "Mentored two junior engineers through their first year, both of whom were promoted.",
+      "Owned testing strategy, planning and case design across the full SDLC — system, regression and performance testing in an agile (Scrum) environment.",
+      "Built and executed test cases through TFS and Microsoft Test Manager, maintained traceability matrices, and performed root cause analysis on defects.",
+      "Ran load, performance and database testing with JMeter and SQL, working directly with offshore developers and onshore project managers and business analysts.",
     ],
-    stack: ["Node.js", "React", "Stripe", "Docker"],
+    stack: ["JMeter", "SQL", "TFS", "Microsoft Test Manager", "Scrum"],
   },
   {
-    company: "Freelance",
-    title: "Designer & Developer",
+    company: "Aquwa Soft",
+    title: "Project Manager",
     period: "2019 — 2021",
+    location: "Islamabad, Pakistan",
     points: [
-      "Designed and built sites and internal tools for a dozen small businesses and two non-profits.",
-      "Ran the whole engagement solo — scoping, design, build, handover — which is where I learned to write documentation people actually read.",
+      "Led project teams through all phases of delivery — planning, timelines, milestones and resource allocation — and owned the quality assurance process for deliverables.",
+      "Designed original game concepts and mechanics, maintained design documents and level layouts, and ran playtesting sessions to refine gameplay.",
+      "Handled app store optimisation and Google Play Console management: keyword research, metadata optimisation, and monitoring app performance and user feedback.",
     ],
+    stack: ["Project Management", "Game Design", "ASO", "Google Play Console"],
   },
 ];
 
@@ -227,54 +284,84 @@ export type Education = {
 
 export const education: Education[] = [
   {
-    school: "University of Karachi",
-    credential: "BSc, Computer Science",
-    period: "2015 — 2019",
-    detail:
-      "Focus on distributed systems and human–computer interaction. Final-year project on offline-first data sync.",
+    school: "Multimedia University",
+    credential: "PhD, in progress",
+    period: "2026 — Present",
+    detail: "Cyberjaya, Malaysia. Research in game development and software engineering.",
   },
   {
-    school: "Interaction Design Foundation",
-    credential: "Certificate, UI Design Patterns",
-    period: "2021",
-    detail: "Coursework in interface patterns, accessibility, and design systems.",
+    school: "Riphah International University",
+    credential: "MS, Software Engineering — with distinction",
+    period: "2019 — 2021",
+    detail:
+      "Final grade 3.63/4.00. Thesis: Challenges & Criteria of Using Software-Based Requirement Elicitation Tools — A Systematic Literature Review.",
+  },
+  {
+    school: "University of Engineering and Technology, Taxila",
+    credential: "BE, Information Technology",
+    period: "2012 — 2016",
+    detail:
+      "Coursework in software engineering, OOP, data structures and web development. Final-year project: Academic Guider.",
   },
 ];
 
-export type Testimonial = {
-  quote: string;
-  author: string;
-  title: string;
+export type Credential = { name: string; issuer: string; year: string };
+
+export const certifications: Credential[] = [
+  { name: "Fraud Awareness", issuer: "British Council", year: "2024" },
+  { name: "Information Management", issuer: "British Council", year: "2024" },
+  { name: "Safety & Security", issuer: "British Council", year: "2024" },
+  {
+    name: "Understanding Equality, Diversity and Inclusion",
+    issuer: "British Council",
+    year: "2024",
+  },
+  { name: "Scrum Fundamentals", issuer: "SCRUMstudy", year: "2022" },
+  { name: "Data Visualisation with Python", issuer: "Certified", year: "2022" },
+  { name: "JMeter", issuer: "Udemy", year: "2021" },
+  { name: "Big Data 101", issuer: "Cognitive Class", year: "2021" },
+  { name: "Fundamentals of Programming", issuer: "Certified", year: "2020" },
+  { name: "Customer Centrist", issuer: "British Council", year: "2018" },
+];
+
+export const achievements: Credential[] = [
+  {
+    name: "Best Teacher Award, Spring 2026 — third consecutive",
+    issuer: "Air University",
+    year: "2026",
+  },
+  {
+    name: "Chief Organiser, IoT Conference",
+    issuer: "Jinnah Convention Centre, Islamabad",
+    year: "2017",
+  },
+  {
+    name: "2nd place, Quiz Competition (General Knowledge)",
+    issuer: "All Pakistan Youth Expo",
+    year: "2015",
+  },
+  {
+    name: "Certificate of Appreciation, Quiz Competition",
+    issuer: "Bahria University",
+    year: "2015",
+  },
+];
+
+export const volunteering = {
+  role: "Computer Science Teacher",
+  period: "2018 — 2023",
+  location: "Islamabad, Pakistan",
+  detail:
+    "Volunteered teaching computer science to children in under-resourced communities, working to close the gap in access to quality education and build science literacy where resources are thin.",
 };
 
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "Altaf is the rare engineer who will push back on the spec — and be right. Our dashboard rebuild shipped early because he cut the two features nobody actually wanted.",
-    author: "Sana Qureshi",
-    title: "Head of Product, Northwind Studio",
-  },
-  {
-    quote:
-      "I've handed him ambiguous problems with no clear owner and gotten back working software with a written rationale. That combination is genuinely hard to find.",
-    author: "Daniel Reyes",
-    title: "CTO, Halcyon Labs",
-  },
-  {
-    quote:
-      "He redesigned our booking flow and completions went up immediately. But what I remember is that he explained every decision in language I understood.",
-    author: "Marwa Haddad",
-    title: "Founder, Atlas Travel Co.",
-  },
-];
-
 export const contact = {
-  heading: "Let's work together.",
-  body: "I'm open to full-time roles and selective contract work. If you have a problem worth solving, I'd like to hear about it — a couple of sentences is plenty to start.",
+  heading: "Let's talk.",
+  body: "I'm open to research collaboration, speaking, and conversations about game development education. A couple of sentences is plenty to start.",
   /**
    * Where the contact form sends to.
-   *  - Leave as null and the form becomes a plain mailto: link (works everywhere, no setup).
-   *  - Or paste a Formspree / Getform endpoint to receive submissions as email.
+   *  - Leave as null and the form opens the visitor's mail client (no setup).
+   *  - Or paste a Formspree / Getform endpoint to receive submissions by email.
    */
   formEndpoint: null as string | null,
 };
@@ -283,8 +370,8 @@ export const contact = {
 export const navLinks = [
   { label: "About", href: "#about" },
   { label: "Work", href: "#work" },
-  { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
-  { label: "Writing", href: "#writing" },
+  { label: "Skills", href: "#skills" },
+  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];

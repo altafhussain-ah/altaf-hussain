@@ -6,7 +6,7 @@ export default function Skills() {
   return (
     <Section
       id="skills"
-      eyebrow="03 — Toolkit"
+      eyebrow="Toolkit"
       title="What I work with."
       intro="Tools are just tools — but these are the ones I reach for without thinking."
     >

@@ -25,8 +25,8 @@ export default function BlogIndex() {
                 Notes and essays.
               </h1>
               <p className="mt-6 max-w-xl text-lead text-ink-soft">
-                Occasional writing about building software — mostly things I got
-                wrong first.
+                Occasional writing on software engineering, teaching and game
+                development.
               </p>
             </header>
           </Reveal>

@@ -6,7 +6,7 @@ export default function Experience() {
   return (
     <Section
       id="experience"
-      eyebrow="04 — Experience"
+      eyebrow="Experience"
       title="Where I've worked."
     >
       <ol className="border-t border-line">

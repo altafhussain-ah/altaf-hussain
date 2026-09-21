@@ -9,9 +9,9 @@ export default function Writing({ posts }: { posts: PostMeta[] }) {
   return (
     <Section
       id="writing"
-      eyebrow="07 — Writing"
+      eyebrow="Writing"
       title="Notes and essays."
-      intro="Occasional writing about building software — mostly things I got wrong first."
+      intro="Occasional writing on software engineering, teaching and game development."
     >
       <ul className="border-t border-line">
         {posts.map((post, i) => (

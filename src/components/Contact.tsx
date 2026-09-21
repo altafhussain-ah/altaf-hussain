@@ -9,7 +9,7 @@ export default function Contact() {
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <Reveal>
-              <p className="eyebrow">08 — Contact</p>
+              <p className="eyebrow">Contact</p>
               <h2 className="mt-4 font-serif text-title text-ink">
                 {contact.heading}
               </h2>
